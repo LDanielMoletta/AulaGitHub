@@ -36,3 +36,23 @@ function menu() {
         }
     });
 }
+function cadastrarLembrete() {
+    rl.question("Digite o título do lembrete: ", (titulo) => {
+        rl.question("Digite a descrição do lembrete: ", (descricao) => {
+          rl.question("Digite a data do lembrete (formato: DD/MM/AAAA): ", (data) => {
+            if (data == Number(data)) {
+                ano = parseInt(data);
+            } else {
+                console.log("Data inválida. A data deve estar no formato DD/MM/AAAA.");
+                menu();
+                return;
+            }
+            const id = lembretes.length + 1;
+            const lembrete = { id, titulo, descricao, data, concluido: false };
+            lembretes.push(lembrete);
+            console.log("Lembrete cadastrado com sucesso!");
+            menu();
+          }
+        );
+        });
+    }
