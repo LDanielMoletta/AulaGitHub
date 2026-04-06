@@ -56,3 +56,9 @@ function cadastrarLembrete() {
         );
         });
     }
+// teste de branch github
+function listarLembretes() {
+    if (lembretes.length === 0) {
+        console.log("Nenhum lembrete cadastrado.");
+    }
+    
