@@ -5,6 +5,9 @@ const rl = readline.createInterface({
 });
 
 const lembretes = [];
+
+menu();
+
 function menu() {
   console.log("\n=== Menu de Lembretes ===");
   console.log("1. Cadastrar lembrete");
@@ -63,22 +66,22 @@ function cadastrarLembrete() {
 }
 
 function listarLembretes() {
-    rl.question(
-      `Você gostaria de listar os lembretes?
+  rl.question(
+    `Você gostaria de listar os lembretes?
       (s/n).: `,
-      (usuario) => {
-        const resposta = usuario.toString(``);
-        switch (resposta) {
-          case `s`:
-            listar();
-            break;
-          default:
-            menu();
-            break;
-        }
-        function listar() {
-          for (let i = 0; i < lembretes.length; i++) {
-            console.log(`
+    (usuario) => {
+      const resposta = usuario.toString(``);
+      switch (resposta) {
+        case `s`:
+          listar();
+          break;
+        default:
+          menu();
+          break;
+      }
+      function listar() {
+        for (let i = 0; i < lembretes.length; i++) {
+          console.log(`
               id do Lembrete: #${lembretes[i].id}           
                   
               Título: ${lembretes[i].titulo}
@@ -87,58 +90,58 @@ function listarLembretes() {
               Conclusão: ${lembretes[i].concluido}
               
                   `);
-          }
-          menu();
         }
+        menu();
       }
-    );
-  }
-  
-  function editarLembrete() {
-    rl.question(
-      `Você gostaria de editar algum lembrete?(s/n)
+    }
+  );
+}
+
+function editarLembrete() {
+  rl.question(
+    `Você gostaria de editar algum lembrete?(s/n)
       .: `,
-      (usuario) => {
-        const resposta = usuario.toString(``);
-        switch (resposta) {
-          case `s`:
-            escolher();
-            break;
-          default:
-            menu();
-            break;
-        }
-        function escolher() {
-          rl.question(
-            `Qual o id do lembrete que você gostaria de editar?`,
-            (usuario) => {
-              const indice = lembretes.findIndex(
-                (lembretes) => lembretes.id === usuario
-              );
-              lembretes.splice(indice, 1);
-              rl.question("Digite o título do lembrete: ", (titulo) => {
-                rl.question("Digite a descrição do lembrete: ", (descricao) => {
-                  rl.question(
-                    "Digite a data do lembrete (formato: DD/MM/AAAA): ",
-                    (data) => {
-                      const id = lembretes.length + 1;
-                      const lembrete = {
-                        id,
-                        titulo,
-                        descricao,
-                        data,
-                        concluido: false,
-                      };
-                      lembretes.push(lembrete);
-                      console.log("Lembrete editado com sucesso!");
-                      menu();
-                    }
-                  );
-                });
-              });
-            }
-          );
-        }
+    (usuario) => {
+      const resposta = usuario.toString(``);
+      switch (resposta) {
+        case `s`:
+          escolher();
+          break;
+        default:
+          menu();
+          break;
       }
-    );
-  }
+      function escolher() {
+        rl.question(
+          `Qual o id do lembrete que você gostaria de editar?`,
+          (usuario) => {
+            const indice = lembretes.findIndex(
+              (lembretes) => lembretes.id === usuario
+            );
+            lembretes.splice(indice, 1);
+            rl.question("Digite o título do lembrete: ", (titulo) => {
+              rl.question("Digite a descrição do lembrete: ", (descricao) => {
+                rl.question(
+                  "Digite a data do lembrete (formato: DD/MM/AAAA): ",
+                  (data) => {
+                    const id = lembretes.length + 1;
+                    const lembrete = {
+                      id,
+                      titulo,
+                      descricao,
+                      data,
+                      concluido: false,
+                    };
+                    lembretes.push(lembrete);
+                    console.log("Lembrete editado com sucesso!");
+                    menu();
+                  }
+                );
+              });
+            });
+          }
+        );
+      }
+    }
+  );
+}
