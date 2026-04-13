@@ -3,7 +3,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-
+const testedeerro = 0;
 const lembretes = [];
 
 menu();
