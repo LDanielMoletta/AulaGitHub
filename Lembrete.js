@@ -44,15 +44,7 @@ function cadastrarLembrete() {
       rl.question(
         "Digite a data do lembrete (formato: DD/MM/AAAA): ",
         (data) => {
-          if (data == Number(data)) {
-            ano = parseInt(data);
-          } else {
-            console.log(
-              "Data inválida. A data deve estar no formato DD/MM/AAAA."
-            );
-            menu();
-            return;
-          }
+            ano = data.toString(``);
           const id = lembretes.length + 1;
           const lembrete = { id, titulo, descricao, data, concluido: false };
           lembretes.push(lembrete);
