@@ -3,7 +3,7 @@ const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
-const testedeerro = 0;
+
 const lembretes = [];
 
 menu();
@@ -39,28 +39,26 @@ function menu() {
     }
   });
 }
+
 function cadastrarLembrete() {
   rl.question("Digite o título do lembrete: ", (titulo) => {
     rl.question("Digite a descrição do lembrete: ", (descricao) => {
-      rl.question(
-        "Digite a data do lembrete (formato: DD/MM/AAAA): ",
-        (data) => {
-          if (data == Number(data)) {
-            ano = parseInt(data);
-          } else {
-            console.log(
-              "Data inválida. A data deve estar no formato DD/MM/AAAA."
-            );
-            menu();
-            return;
-          }
+      rl.question("Digite uma data de prazo para o lembrete (formato: DD/MM/AAAA): ", (data) => {
+        rl.question("O lembrete foi concluído? (s/n): ", (concluido) => {
           const id = lembretes.length + 1;
-          const lembrete = { id, titulo, descricao, data, concluido: false };
+          const lembrete = {
+            id,
+            titulo,
+            descricao,
+            data,
+            concluido: concluido.toLowerCase() === "s",
+          };
           lembretes.push(lembrete);
           console.log("Lembrete cadastrado com sucesso!");
           menu();
         }
-      );
+        );
+      });
     });
   });
 }
