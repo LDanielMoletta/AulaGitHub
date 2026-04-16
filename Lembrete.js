@@ -145,3 +145,35 @@ function editarLembrete() {
     }
   );
 }
+
+function concluirLembrete() {
+  rl.question(
+    `Você gostaria de concluir algum lembrete?(s/n)
+      .: `,
+    (usuario) => {
+      const resposta = usuario.toString(``);
+      switch (resposta) {
+        case `s`:
+          escolher();
+          break;
+        default:
+          menu();
+          break;
+      }
+      function escolher() {
+        rl.question(
+          `Qual o id do lembrete que você gostaria de concluir?`,
+          (usuario) => {
+            const indice = lembretes.findIndex(
+              (lembretes) => lembretes.id === usuario
+            );
+            lembretes[indice].concluido = true;
+            console.log("Lembrete concluído com sucesso!");
+            menu();
+          }
+        );
+      }
+    }
+  );
+}
+menu();
