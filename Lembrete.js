@@ -22,7 +22,6 @@ function menu() {
         break;
       case "2":
         listarLembretes();
-        menu();
         break;
       case "3":
         editarLembrete();
